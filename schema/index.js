@@ -7,6 +7,7 @@ const {
 
 const MeType = require('./types/me');
 const pgdb = require('../database/pgdb');
+const AddContestsMutation = require('./mutations/add-contests');
 
 const RootQueryType = new GraphQLObjectType({
     name: "RootQueryType",
@@ -32,8 +33,17 @@ const RootQueryType = new GraphQLObjectType({
     }
 });
 
+const RootMutationType = new GraphQLObjectType({
+    name: "RootMutationType",
+
+    fields: {
+        AddContests: AddContestsMutation
+    }
+});
+
 const ncSchema = new GraphQLSchema({
-    query: RootQueryType
+    query: RootQueryType,
+    mutation: RootMutationType
 });
 
 module.exports = ncSchema;
